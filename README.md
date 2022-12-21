@@ -8,7 +8,7 @@ It was created due to the fact that adding them manually these days can take a d
 Follow on-screen instructions: you will be asked to choose your thcrap directory, and, if Steam can't be auto-detected, your Steam directory.
 
 ## Build instructions
-1. Download the latest LTS version for node from nodejs.org for Windows, and extract it into the `node` directory.
+1. Download the latest LTS version of Node for Windows, and extract it into the `node` directory.
 2. Run `steam-thcrap.bat` at least once to confirm everything works.
 3. Delete the `node_modules` directory.
 4. Zip everything else up and distribute.
