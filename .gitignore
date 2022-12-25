@@ -1,3 +1,4 @@
-/node_modules/
-/node/*
-!/node/.gitkeep
+/venv/
+/build/
+/dist/
+/steam-thcrap.spec
