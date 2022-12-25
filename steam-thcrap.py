@@ -57,6 +57,8 @@ steamPath = winreg.QueryValueEx(
 if not steamPath:
     fail("Failed to find Steam. Please run Steam at least once before continuing.")
 if not os.path.exists("config/games.js"):
+    os.chdir('..')
+if not os.path.exists("config/games.js"):
     fail("Failed to find thcrap config files. Please run thcrap.exe and configure your games before continuing.")
     os.system("pause")
     exit()
