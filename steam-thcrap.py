@@ -60,8 +60,6 @@ if not os.path.exists("config/games.js"):
     os.chdir('..')
 if not os.path.exists("config/games.js"):
     fail("Failed to find thcrap config files. Please run thcrap.exe and configure your games before continuing.")
-    os.system("pause")
-    exit()
 games = json.load(open("config/games.js", "r", encoding='utf-8'))
 langs = [os.path.basename(x) for x in glob.glob("config/*.js") if os.path.basename(x) not in ["games.js", "config.js"]]
 
