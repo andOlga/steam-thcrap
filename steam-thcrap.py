@@ -56,8 +56,11 @@ steamPath = winreg.QueryValueEx(
 )[0]
 if not steamPath:
     fail("Failed to find Steam. Please run Steam at least once before continuing.")
-if not os.path.exists("config/games.js"):
-    os.chdir('..')
+if not os.path.exists("thcrap.exe"):
+    if os.path.exists("../thcrap.exe"):
+        os.chdir("..")
+    else:
+        fail("Failed to find thcrap. Make sure this application is placed in the thcrap folder.")
 if not os.path.exists("config/games.js"):
     fail("Failed to find thcrap config files. Please run thcrap.exe and configure your games before continuing.")
 games = json.load(open("config/games.js", "r", encoding='utf-8'))
