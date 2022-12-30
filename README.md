@@ -8,6 +8,7 @@ It was created due to the fact that adding them manually these days can take a d
 ## Build instructions (for developers only)
 ```bash
 python -mvenv venv
+source venv/Scripts/activate
 pip install -r requirements.txt
 # ... make and test your changes...
 black steam-thcrap.py
