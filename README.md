@@ -4,3 +4,14 @@ It was created due to the fact that adding them manually these days can take a d
 
 ## Usage instructions
 [Download](../../releases/latest/download/steam-thcrap.zip) the latest release, extract and place the `steam-thcrap` folder near `thcrap.exe`, and run the `steam-thcrap.exe` file inside. Follow on-screen prompts, and restart Steam when the app tells you to do so.
+
+## Build instructions (for developers only)
+```bash
+python -mvenv venv
+pip install -r requirements.txt
+# ... make and test your changes...
+black steam-thcrap.py
+pyinstaller steam-thcrap.py
+# ...zip up dist/steam-thcrap with your favorite archvier...
+gh release create vX.X.X dist/steam-thcrap.zip
+```
