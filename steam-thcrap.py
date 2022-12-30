@@ -102,4 +102,5 @@ for sFile in sFiles:
             shorts[str(short_index)] = short
             short_index += 1
     vdf.binary_dump({"shortcuts": shorts}, open(sFile, "wb"))
-    fail("All done. Please restart Steam to see the Touhou games in your library.")
+
+fail("All done. Please restart Steam to see the Touhou games in your library.")
