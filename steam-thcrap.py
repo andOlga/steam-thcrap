@@ -86,6 +86,7 @@ if not sFiles:
     )
 
 for sFile in sFiles:
+    userId = os.path.basename(os.path.dirname(os.path.dirname(sFile)))
     shorts = vdf.binary_load(open(sFile, "rb"))["shortcuts"]
     short_index = max([int(x) for x in shorts.keys()]) + 1
     for lang in langs:
@@ -98,7 +99,7 @@ for sFile in sFiles:
                 "icon": makeSteamPath(icon),
                 "LaunchOptions": f"{lang} {game}",
             }
-            print(f"Adding {short['AppName']}...")
+            print(f"Adding {short['AppName']} for user {userId}...")
             shorts[str(short_index)] = short
             short_index += 1
     vdf.binary_dump({"shortcuts": shorts}, open(sFile, "wb"))
