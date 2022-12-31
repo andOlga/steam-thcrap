@@ -12,7 +12,7 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 # ... make and test your changes...
 black steam-thcrap.py
-pyinstaller steam-thcrap.py
+pyinstaller --icon icon.ico steam-thcrap.py
 # ...zip up dist/steam-thcrap with your favorite archvier...
 gh release create vX.X.X dist/steam-thcrap.zip
 ```
