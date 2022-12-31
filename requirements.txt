@@ -12,3 +12,4 @@ pyinstaller-hooks-contrib==2022.14
 pywin32-ctypes==0.2.0
 tomli==2.0.1
 vdf==3.4
+wheel==0.38.4
