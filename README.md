@@ -1,3 +1,5 @@
+![](https://repository-images.githubusercontent.com/580734620/d3bdc5b8-36ee-4b32-b35c-a6bf8c29074c)
+
 # steam-thcrap
 This is a small program to automatically add [thcrap](https://thpatch.net)-patched [Touhou](https://touhou-project.news) games to [Steam](https://s.team) as shortcuts ("Non-Steam Games").
 It was created due to the fact that adding them manually these days can take a damn hour or so since there's tons of games and Steam's built-in shortcut editor is wildly inefficient for adding multiple games with custom launch arguments.
