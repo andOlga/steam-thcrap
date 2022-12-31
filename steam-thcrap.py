@@ -32,6 +32,7 @@ import json
 import winreg
 import os
 import glob
+import time
 
 
 def fail(err):
@@ -104,4 +105,6 @@ for sFile in sFiles:
             short_index += 1
     vdf.binary_dump({"shortcuts": shorts}, open(sFile, "wb"))
 
-fail("All done. Please restart Steam to see the Touhou games in your library.")
+os.system(f'"{steamPath}\\steam.exe" -shutdown')
+time.sleep(10)
+os.system("start steam://open/games")
