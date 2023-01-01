@@ -33,6 +33,7 @@ import winreg
 import os
 import glob
 import time
+import binascii
 
 
 def fail(err):
@@ -56,6 +57,8 @@ def makeAppName(game, lang):
     else:
         return f"{game} ({lang})"
 
+def makeAppId(short):
+    return binascii.crc32(str.encode(short['Exe']+short['AppName'])) | 0x80000000
 
 steamPath = winreg.QueryValueEx(
     winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Valve\\Steam"), "SteamPath"
