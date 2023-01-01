@@ -108,6 +108,8 @@ if not sFiles:
         "Failed to find any shortcuts.vdf files. Please create at least one shortcut in Steam (to any game, not necessarily Touhou) manually before continuing."
     )
 
+exePath = makeSteamPath(os.path.join(os.getcwd(), "thcrap_loader.exe"))
+
 for sFile in sFiles:
     configDir = os.path.dirname(sFile)
     userId = os.path.basename(os.path.dirname(configDir))
@@ -117,9 +119,19 @@ for sFile in sFiles:
         for game, icon in games.items():
             if "_custom" in game:
                 continue
+            hasGame = False
+            for existingShort in shorts.values():
+                if (
+                    existingShort.get("Exe") == exePath
+                    and existingShort.get("LaunchOptions") == f"{lang} {game}"
+                ):
+                    hasGame = True
+                    break
+            if hasGame:
+                continue
             short = {
                 "AppName": makeAppName(game, lang),
-                "Exe": makeSteamPath(os.path.join(os.getcwd(), "thcrap_loader.exe")),
+                "Exe": exePath,
                 "icon": makeSteamPath(icon),
                 "LaunchOptions": f"{lang} {game}",
             }
