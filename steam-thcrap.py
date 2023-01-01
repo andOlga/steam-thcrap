@@ -34,6 +34,7 @@ import os
 import glob
 import time
 import binascii
+import shutil
 
 
 def fail(err):
@@ -57,8 +58,24 @@ def makeAppName(game, lang):
     else:
         return f"{game} ({lang})"
 
+
 def makeAppId(short):
-    return binascii.crc32(str.encode(short['Exe']+short['AppName'])) | 0x80000000
+    return str(binascii.crc32(str.encode(short["Exe"] + short["AppName"])) | 0x80000000)
+
+
+def makeGridMap(short, game):
+    appId = makeAppId(short)
+    gd = {}
+    for suffix in ["", "p", "_hero", "_logo"]:
+        imageFile = None
+        if os.path.exists(f"grid/{game}{suffix}.jpg"):
+            imageFile = f"grid/{game}{suffix}.jpg"
+        elif os.path.exists(f"grid/{game}{suffix}.png"):
+            imageFile = f"grid/{game}{suffix}.png"
+        if imageFile:
+            gd[imageFile] = imageFile.replace(game, appId)
+    return gd
+
 
 steamPath = winreg.QueryValueEx(
     winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Valve\\Steam"), "SteamPath"
@@ -67,6 +84,8 @@ if not steamPath:
     fail("Failed to find Steam. Please run Steam at least once before continuing.")
 if not os.path.exists("thcrap.exe"):
     if os.path.exists("../thcrap.exe"):
+        if os.path.exists("grid") and not os.path.exists("../grid"):
+            shutil.move("grid", "../grid")
         os.chdir("..")
     else:
         fail(
@@ -90,7 +109,8 @@ if not sFiles:
     )
 
 for sFile in sFiles:
-    userId = os.path.basename(os.path.dirname(os.path.dirname(sFile)))
+    configDir = os.path.dirname(sFile)
+    userId = os.path.basename(os.path.dirname(configDir))
     shorts = vdf.binary_load(open(sFile, "rb"))["shortcuts"]
     short_index = max([int(x) for x in shorts.keys()]) + 1
     for lang in langs:
@@ -104,10 +124,13 @@ for sFile in sFiles:
                 "LaunchOptions": f"{lang} {game}",
             }
             print(f"Adding {short['AppName']} for user {userId}...")
+            for src, dst in makeGridMap(short, game).items():
+                shutil.copy(src, os.path.join(configDir, dst))
             shorts[str(short_index)] = short
             short_index += 1
     vdf.binary_dump({"shortcuts": shorts}, open(sFile, "wb"))
 
+print("All done. Restarting Steam...")
 os.system(f'"{steamPath}\\steam.exe" -shutdown')
-time.sleep(10)
+time.sleep(10)  # Wait for Steam to shut down
 os.system("start steam://open/games")

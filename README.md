@@ -17,6 +17,7 @@ pip install -r requirements.txt
 # ... make and test your changes...
 black steam-thcrap.py
 pyinstaller --icon icon.ico steam-thcrap.py
+cp -r grid dist/steam-thcrap/
 cd dist
 7z a steam-thcrap.zip steam-thcrap
 gh release create vX.X.X steam-thcrap.zip
