@@ -36,6 +36,8 @@ import time
 import binascii
 import shutil
 
+selfLocation = os.getcwd()
+
 
 def fail(err):
     print(err)
@@ -68,29 +70,35 @@ def makeGridMap(short, game):
     gd = {}
     for suffix in ["", "p", "_hero", "_logo"]:
         imageFile = None
-        if os.path.exists(f"grid/{game}{suffix}.jpg"):
-            imageFile = f"grid/{game}{suffix}.jpg"
-        elif os.path.exists(f"grid/{game}{suffix}.png"):
-            imageFile = f"grid/{game}{suffix}.png"
+        if os.path.exists(f"{selfLocation}/grid/{game}{suffix}.jpg"):
+            imageFile = f"{selfLocation}/grid/{game}{suffix}.jpg"
+        elif os.path.exists(f"{selfLocation}/grid/{game}{suffix}.png"):
+            imageFile = f"{selfLocation}/grid/{game}{suffix}.png"
         if imageFile:
-            gd[imageFile] = imageFile.replace(game, appId)
+            gd[imageFile] = imageFile.replace(f"{selfLocation}/", "").replace(
+                game, appId
+            )
     return gd
 
 
 def getSteamPath():
-    steamPath = winreg.QueryValueEx(
-        winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Valve\\Steam"), "SteamPath"
-    )[0]
-    if not steamPath:
+    try:
+        steamPath = winreg.QueryValueEx(
+            winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software\\Valve\\Steam"),
+            "SteamPath",
+        )[0]
+        if not steamPath:
+            fail(
+                "Failed to find Steam. Please run Steam at least once before continuing."
+            )
+        return steamPath
+    except:
         fail("Failed to find Steam. Please run Steam at least once before continuing.")
-    return steamPath
 
 
 def handleSubdirectory():
     if not os.path.exists("thcrap.exe"):
         if os.path.exists("../thcrap.exe"):
-            if os.path.exists("grid") and not os.path.exists("../grid"):
-                shutil.move("grid", "../grid")
             os.chdir("..")
         else:
             fail(
@@ -134,6 +142,8 @@ def checkGameExists(shorts, lang, game, exePath):
 
 
 def copyGameArt(short, game, configDir):
+    if not os.path.exists(os.path.join(configDir, "grid")):
+        os.makedirs(os.path.join(configDir, "grid"))
     for src, dst in makeGridMap(short, game).items():
         shutil.copy(src, os.path.join(configDir, dst))
 
