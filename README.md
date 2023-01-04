@@ -7,6 +7,8 @@ It was created due to the fact that adding them manually these days can take a d
 ## Usage instructions
 [Download](../../releases/latest/download/steam-thcrap.zip) the latest release, extract and place the `steam-thcrap` folder near `thcrap.exe`, and run the `steam-thcrap.exe` file inside. You are done.
 
+On Linux? Use [this](https://github.com/tactikauan/thcrap-steam-proton-wrapper) instead.
+
 ## Build instructions (for developers only)
 (in a [Git Bash](https://git-scm.com) shell, with [Python](https://python.org), [NanaZip](https://github.com/M2Team/NanaZip) and [GitHub CLI](https://cli.github.com) installed)
 
