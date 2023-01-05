@@ -10,7 +10,7 @@ It was created due to the fact that adding them manually these days can take a d
 On Linux? Use [this](https://github.com/tactikauan/thcrap-steam-proton-wrapper) instead.
 
 ## Build instructions (for developers only)
-(in a [Git Bash](https://git-scm.com) shell, with [Python](https://python.org), [NanaZip](https://github.com/M2Team/NanaZip) and [GitHub CLI](https://cli.github.com) installed)
+(in a [Git Bash](https://git-scm.com) shell, with [Python](https://python.org) and [GitHub CLI](https://cli.github.com) installed)
 
 ```bash
 python -mvenv venv
@@ -21,6 +21,6 @@ black steam-thcrap.py
 pyinstaller --icon icon.ico steam-thcrap.py
 cp -r grid dist/steam-thcrap/
 cd dist
-7z a steam-thcrap.zip steam-thcrap
+python -m zipfile -c steam-thcrap.zip steam-thcrap/
 gh release create vX.X.X steam-thcrap.zip
 ```
