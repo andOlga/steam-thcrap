@@ -108,7 +108,7 @@ def getShortcutFiles(steamPath):
 def addShortcut(sFile, game, lang, icon):
     exePath = makeSteamPath(os.path.join(os.getcwd(), "thcrap_loader.exe"))
     configDir = os.path.dirname(sFile)
-    userId = os.path.basename(os.path.dirname(configDir))
+    userName = getPersonaName(configDir)
     shorts = vdf.binary_load(open(sFile, "rb"))["shortcuts"]
     short = {
         "AppName": makeAppName(game, lang),
@@ -117,7 +117,7 @@ def addShortcut(sFile, game, lang, icon):
         "LaunchOptions": f"{lang} {game}",
     }
     if not checkGameExists(shorts, lang, game, exePath):
-        print(f"Adding {short['AppName']} for user {userId}...")
+        print(f"Adding {short['AppName']} for user {userName}...")
         copyGameArt(short, game, configDir)
         short_index = str(max([int(x) for x in shorts.keys()]) + 1)
         shorts[short_index] = short
@@ -135,6 +135,15 @@ def fail(err):
     print(err)
     os.system("pause")
     exit()
+
+
+def getPersonaName(configDir):
+    localConfig = vdf.load(open(f"{configDir}/localconfig.vdf", encoding="utf-8"))
+    name = localConfig.get("UserLocalConfigStore").get("friends").get("PersonaName")
+    if name:
+        return name
+    else:
+        return os.path.basename(os.path.dirname(configDir))  # User ID
 
 
 def makeSteamPath(path):
