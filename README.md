@@ -8,17 +8,16 @@ It was created due to the fact that adding them manually these days can take a d
 [Download](../../releases/latest/download/steam-thcrap.zip) the latest release, extract and place the `steam-thcrap` folder near `thcrap.exe`, and run the `steam-thcrap.exe` file inside. You are done.
 
 ## Build instructions (for developers only)
-(in a [Git Bash](https://git-scm.com) shell, with [Python](https://python.org) and [GitHub CLI](https://cli.github.com) installed)
+(in a command line prompt, with [Python](https://python.org) installed)
 
-```bash
+```batch
 python -mvenv venv
-source venv/Scripts/activate
+venv\Scripts\activate.bat
 pip install -r requirements.txt
-# ... make and test your changes...
+rem ... make and test your changes...
 black steam-thcrap.py
 pyinstaller --icon icon.ico steam-thcrap.py
-cp -r grid dist/steam-thcrap/
+xcopy grid dist\steam-thcrap\grid\
 cd dist
 python -m zipfile -c steam-thcrap.zip steam-thcrap/
-gh release create vX.X.X steam-thcrap.zip
 ```
