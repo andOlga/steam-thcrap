@@ -193,6 +193,8 @@ def checkGameExists(shorts, lang, game, exePath):
 
 
 def copyGameArt(short, game, configDir):
+    # Valve broke this. Until a fix is discovered, this functionality will be disabled.
+    return
     if not os.path.exists(os.path.join(configDir, "grid")):
         os.makedirs(os.path.join(configDir, "grid"))
     for src, dst in makeGridMap(short, game).items():

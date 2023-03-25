@@ -21,3 +21,14 @@ xcopy grid dist\steam-thcrap\grid\
 cd dist
 python -m zipfile -c steam-thcrap.zip steam-thcrap/
 ```
+
+## Alternatives
+This program exploits internal, undocumented Steam functionality and as such may break, whether partially or completely, when Steam updates. We intend to try to fix it when such things happen, but there's a chance that some change Valve makes will break the program beyond repair.
+
+While no other software (to the best of our knowledge) provides this exact functionality, you may find some other options helpful in case steam-thcrap breaks.
+
+- [UTL](https://github.com/thpatch/Universal-THCRAP-Launcher), which is an official part of thcrap that provides a simple game-select menu. With UTL, you only need to add the UTL exe itself to Steam just once, and then your Touhou games will then be available through a single shortcut in Steam.
+- The [standalone patches](https://www.thpatch.net/wiki/Touhou_Patch_Center:Standalone_Patches), which give you individual .exe's for translated versions of each Touhou game that can be easily added to Steam.
+- If you are adding the games to Steam just to have Steam Input enabled for them, you can use [GlosSI](https://github.com/Alia5/GlosSI) instead, or a system-wide gamepad mapper such as [AntiMicroX](https://github.com/AntiMicroX/antimicrox/).
+- Adding the games manually -- add `thcrap_loader.exe` and, in Properties, set "Launch Options" to e.g. `en.js th06` (for EoSD in English).
+- Using a [better launcher](https://playnite.link/).
