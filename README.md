@@ -41,8 +41,3 @@ xcopy grid dist\steam-thcrap\grid\
 cd dist
 python -m zipfile -c steam-thcrap.zip steam-thcrap/
 ```
-
-## Alternatives
-This program exploits internal, undocumented Steam functionality and as such may break, whether partially or completely, when Steam updates. We intend to try to fix it when such things happen, but there's a chance that some change Valve makes will break the program beyond repair.
-
-While no other software (to the best of our knowledge) provides this exact functionality, you may find some other options helpful in case steam-thcrap breaks.
