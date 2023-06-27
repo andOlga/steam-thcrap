@@ -16,7 +16,7 @@ Please consider the following alternatives:
 
 If you are dead-set on using `steam-thcrap`, or are willing to take over its development, the original README follows below. 
 
-===
+---
 
 ![](https://repository-images.githubusercontent.com/580734620/d3bdc5b8-36ee-4b32-b35c-a6bf8c29074c)
 
